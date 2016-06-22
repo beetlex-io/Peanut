@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D39BFDC7-D56A-4A43-870A-9DEFA9525438}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Peanut</RootNamespace>
+    <AssemblyName>Peanut</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET_4</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Peanut.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NET_4</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Peanut.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="JoinTable.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="blowfish.cs" />
+    <Compile Include="Command.cs" />
+    <Compile Include="ConnectionContext.cs" />
+    <Compile Include="ConnectionHandler.cs" />
+    <Compile Include="ConnectionType.cs" />
+    <Compile Include="DataMsg.Designer.cs" />
+    <Compile Include="DBContext.cs" />
+    <Compile Include="DriverTemplate.cs" />
+    <Compile Include="EntityBase.cs" />
+    <Compile Include="Expression.cs" />
+    <Compile Include="ExpressionExpand.cs" />
+    <Compile Include="FieldInfo.cs" />
+    <Compile Include="FieldState.cs" />
+    <Compile Include="IConnectinContext.cs" />
+    <Compile Include="IDBContextInithandler.cs" />
+    <Compile Include="IDriver.cs" />
+    <Compile Include="IEntityState.cs" />
+    <Compile Include="InTableExpression.cs" />
+    <Compile Include="ISQLBuilder.cs" />
+    <Compile Include="KeyValueCollection.cs" />
+    <Compile Include="Mappings\AggregationAttribute.cs" />
+    <Compile Include="Mappings\AggregationType.cs" />
+    <Compile Include="Mappings\ChangeTable.cs" />
+    <Compile Include="Mappings\ColumnAttribute.cs" />
+    <Compile Include="Mappings\CommandReader.cs" />
+    <Compile Include="Mappings\ConnectionAttribute.cs" />
+    <Compile Include="Mappings\DataObject.cs" />
+    <Compile Include="Mappings\DObjectToBObject.cs" />
+    <Compile Include="Mappings\IDAttribute.cs" />
+    <Compile Include="Mappings\ITableObject.cs" />
+    <Compile Include="Mappings\MSSqlSelectTop.cs" />
+    <Compile Include="Mappings\ObjectMapper.cs" />
+    <Compile Include="Mappings\OracleSelectTop.cs" />
+    <Compile Include="Mappings\PorcParameterAttribute.cs" />
+    <Compile Include="Mappings\ProcAttribute.cs" />
+    <Compile Include="Mappings\ProcBuilder.cs" />
+    <Compile Include="Mappings\ProcDataReader.cs" />
+    <Compile Include="Mappings\PropertyCast.cs" />
+    <Compile Include="Mappings\PropertyMapper.cs" />
+    <Compile Include="Mappings\RelationAttribute.cs" />
+    <Compile Include="Mappings\SelectChangeAttribute.cs" />
+    <Compile Include="Mappings\SelectReader.cs" />
+    <Compile Include="Mappings\TableAttribute.cs" />
+    <Compile Include="Mappings\ValueAttribute.cs" />
+    <Compile Include="ModuleCast.cs" />
+    <Compile Include="MysqlBuilder.cs" />
+    <Compile Include="OracleBuilder.cs" />
+    <Compile Include="Result.cs" />
+    <Compile Include="SelectObject.cs" />
+    <Compile Include="SmarkData.cs" />
+    <Compile Include="SmarkDataSection.cs" />
+    <Compile Include="SmarkException.cs" />
+    <Compile Include="SqlitBuilder.cs" />
+    <Compile Include="Validates\Class1.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataMsg.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ikende.com\IKende.com.core\IKende.com.core.csproj">
+      <Project>{D75B326D-AB7D-4C4E-A74D-D81F224A446A}</Project>
+      <Name>IKende.com.core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
