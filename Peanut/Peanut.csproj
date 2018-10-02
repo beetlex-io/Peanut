@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataMsg1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataMsg.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EmitHandler.cs" />
     <Compile Include="JoinTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="blowfish.cs" />
@@ -50,7 +56,6 @@
     <Compile Include="ConnectionContext.cs" />
     <Compile Include="ConnectionHandler.cs" />
     <Compile Include="ConnectionType.cs" />
-    <Compile Include="DataMsg.Designer.cs" />
     <Compile Include="DBContext.cs" />
     <Compile Include="DriverTemplate.cs" />
     <Compile Include="EntityBase.cs" />
@@ -98,16 +103,14 @@
     <Compile Include="SmarkDataSection.cs" />
     <Compile Include="SmarkException.cs" />
     <Compile Include="SqlitBuilder.cs" />
+    <Compile Include="Utils.cs" />
     <Compile Include="Validates\Class1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DataMsg.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ikende.com\IKende.com.core\IKende.com.core.csproj">
-      <Project>{D75B326D-AB7D-4C4E-A74D-D81F224A446A}</Project>
-      <Name>IKende.com.core</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="DataMsg.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DataMsg1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

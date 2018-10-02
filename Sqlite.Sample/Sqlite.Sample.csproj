@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.109.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PeanutX\PeanutX.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Models.cs">
+      <Generator>Peanut</Generator>
+      <LastGenOutput>Models.Model.cs</LastGenOutput>
+    </Compile>
+    <Compile Update="Models.Model.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Models.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Northwind_small.sqlite">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

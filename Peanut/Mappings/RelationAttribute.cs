@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
-using IKende.com.core;
 namespace Peanut.Mappings
 {
     [AttributeUsage(AttributeTargets.Property,AllowMultiple=true)]

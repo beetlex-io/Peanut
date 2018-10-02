@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using System.Collections;
-using IKende.com.core;
+
 namespace Peanut
 {
     /// <summary>
@@ -13,7 +13,7 @@ namespace Peanut
     {
         public ConnectionContext(string db, IDriver driver, DB type)
         {
-            TimeWatch.________________________________________________________("Peanut->Create IConnection Context");
+           
             mDB = db;
             mHandler = DBContext.CurrentHandler(db);
             if (mHandler == null)
@@ -22,38 +22,38 @@ namespace Peanut
                 mActiveConnection = true;
             }
             Type = type;
-            TimeWatch.________________________________________________________();
+           
         }
 
         public int ExecuteNonQuery(Command cmd)
         {
-            TimeWatch.________________________________________________________("Peanut->Execute NonQuery");
+         
             int value= mHandler.ExecuteNonQuery(cmd);
-            TimeWatch.________________________________________________________();
+          
             return value;
         }
         public IDataReader ExecuteReader(Command cmd)
         {
-            TimeWatch.________________________________________________________("Peanut->Execute Reader");
+       
             IDataReader result= mHandler.ExecuteReader(cmd);
-            TimeWatch.________________________________________________________();
+         
             return result;
         }
 
         public object ExecuteScalar(Command cmd)
         {
-            TimeWatch.________________________________________________________("Peanut->Execute Scalar");
+          
             object result= mHandler.ExecuteScalar(cmd);
-            TimeWatch.________________________________________________________();
+     
             return result;
 
         }
 
         public object ExecProc(object parameter)
         {
-            TimeWatch.________________________________________________________("Peanut->Execute Proce Return Object");
+        
             object result= mHandler.ExecProc(parameter);
-            TimeWatch.________________________________________________________();
+          
             return result;
         }
 
@@ -66,7 +66,7 @@ namespace Peanut
 
         public IList ListProc(Type entity, object parameter)
         {
-            TimeWatch.________________________________________________________("Peanut->Execute Proce Return List");
+           
             System.Type itemstype = System.Type.GetType("System.Collections.Generic.List`1");
             itemstype = itemstype.MakeGenericType(entity);
             IList result = (IList)Activator.CreateInstance(itemstype);
@@ -80,7 +80,7 @@ namespace Peanut
                     result.Add(item);
                 }
             }
-            TimeWatch.________________________________________________________();
+          
             return result;
         }
 
@@ -211,7 +211,7 @@ namespace Peanut
 
         public IList List(Type type, Command cmd, Region region)
         {
-            TimeWatch.________________________________________________________("Peanut->Execute SQL Return List");
+           
             if (region == null)
                 region = new Region { Start = 0, Size = 99999999 };
             IList items = null;
@@ -254,7 +254,7 @@ namespace Peanut
                     index++;
                 }
             }
-            TimeWatch.________________________________________________________();
+           
             return items;
         }
 
@@ -290,7 +290,7 @@ namespace Peanut
         }
         public IList<T> GetValues<T>(Command cmd, Region region)
         {
-            TimeWatch.________________________________________________________("Peanut->Execute SQL Return Values");
+           
             List<T> result = null;
             object value;
             if (region == null)
@@ -327,7 +327,7 @@ namespace Peanut
                     index++;
                 }
             }
-            TimeWatch.________________________________________________________();
+         
             return result;
         }
         #endregion

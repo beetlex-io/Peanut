@@ -7,7 +7,7 @@ using System.Data;
 using Peanut.Mappings;
 using System.Text.RegularExpressions;
 using System.Collections;
-using IKende.com.core;
+
 namespace Peanut
 {
     /// <summary>

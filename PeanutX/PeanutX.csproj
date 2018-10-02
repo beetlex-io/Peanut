@@ -1,0 +1,82 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>Peanut</AssemblyName>
+    <Authors>henryfan</Authors>
+    <Product>Data Access Component for .net core</Product>
+    <Copyright>Copyright © henryfan 2018 email:henryfan@msn.com</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Peanut\blowfish.cs" Link="blowfish.cs" />
+    <Compile Include="..\Peanut\Command.cs" Link="Command.cs" />
+    <Compile Include="..\Peanut\ConnectionContext.cs" Link="ConnectionContext.cs" />
+    <Compile Include="..\Peanut\ConnectionHandler.cs" Link="ConnectionHandler.cs" />
+    <Compile Include="..\Peanut\ConnectionType.cs" Link="ConnectionType.cs" />
+    <Compile Include="..\Peanut\DataMsg1.Designer.cs" Link="DataMsg1.Designer.cs" />
+    <Compile Include="..\Peanut\DBContext.cs" Link="DBContext.cs" />
+    <Compile Include="..\Peanut\DriverTemplate.cs" Link="DriverTemplate.cs" />
+    <Compile Include="..\Peanut\EmitHandler.cs" Link="EmitHandler.cs" />
+    <Compile Include="..\Peanut\EntityBase.cs" Link="EntityBase.cs" />
+    <Compile Include="..\Peanut\Expression.cs" Link="Expression.cs" />
+    <Compile Include="..\Peanut\ExpressionExpand.cs" Link="ExpressionExpand.cs" />
+    <Compile Include="..\Peanut\FieldInfo.cs" Link="FieldInfo.cs" />
+    <Compile Include="..\Peanut\FieldState.cs" Link="FieldState.cs" />
+    <Compile Include="..\Peanut\IConnectinContext.cs" Link="IConnectinContext.cs" />
+    <Compile Include="..\Peanut\IDBContextInithandler.cs" Link="IDBContextInithandler.cs" />
+    <Compile Include="..\Peanut\IDriver.cs" Link="IDriver.cs" />
+    <Compile Include="..\Peanut\IEntityState.cs" Link="IEntityState.cs" />
+    <Compile Include="..\Peanut\InTableExpression.cs" Link="InTableExpression.cs" />
+    <Compile Include="..\Peanut\ISQLBuilder.cs" Link="ISQLBuilder.cs" />
+    <Compile Include="..\Peanut\JoinTable.cs" Link="JoinTable.cs" />
+    <Compile Include="..\Peanut\KeyValueCollection.cs" Link="KeyValueCollection.cs" />
+    <Compile Include="..\Peanut\Mappings\AggregationAttribute.cs" Link="AggregationAttribute.cs" />
+    <Compile Include="..\Peanut\Mappings\AggregationType.cs" Link="AggregationType.cs" />
+    <Compile Include="..\Peanut\Mappings\ChangeTable.cs" Link="ChangeTable.cs" />
+    <Compile Include="..\Peanut\Mappings\ColumnAttribute.cs" Link="ColumnAttribute.cs" />
+    <Compile Include="..\Peanut\Mappings\CommandReader.cs" Link="CommandReader.cs" />
+    <Compile Include="..\Peanut\Mappings\ConnectionAttribute.cs" Link="ConnectionAttribute.cs" />
+    <Compile Include="..\Peanut\Mappings\DataObject.cs" Link="DataObject.cs" />
+    <Compile Include="..\Peanut\Mappings\DObjectToBObject.cs" Link="DObjectToBObject.cs" />
+    <Compile Include="..\Peanut\Mappings\IDAttribute.cs" Link="IDAttribute.cs" />
+    <Compile Include="..\Peanut\Mappings\ITableObject.cs" Link="ITableObject.cs" />
+    <Compile Include="..\Peanut\Mappings\MSSqlSelectTop.cs" Link="MSSqlSelectTop.cs" />
+    <Compile Include="..\Peanut\Mappings\ObjectMapper.cs" Link="ObjectMapper.cs" />
+    <Compile Include="..\Peanut\Mappings\OracleSelectTop.cs" Link="OracleSelectTop.cs" />
+    <Compile Include="..\Peanut\Mappings\PorcParameterAttribute.cs" Link="PorcParameterAttribute.cs" />
+    <Compile Include="..\Peanut\Mappings\ProcAttribute.cs" Link="ProcAttribute.cs" />
+    <Compile Include="..\Peanut\Mappings\ProcBuilder.cs" Link="ProcBuilder.cs" />
+    <Compile Include="..\Peanut\Mappings\ProcDataReader.cs" Link="ProcDataReader.cs" />
+    <Compile Include="..\Peanut\Mappings\PropertyCast.cs" Link="PropertyCast.cs" />
+    <Compile Include="..\Peanut\Mappings\PropertyMapper.cs" Link="PropertyMapper.cs" />
+    <Compile Include="..\Peanut\Mappings\RelationAttribute.cs" Link="RelationAttribute.cs" />
+    <Compile Include="..\Peanut\Mappings\SelectChangeAttribute.cs" Link="SelectChangeAttribute.cs" />
+    <Compile Include="..\Peanut\Mappings\SelectReader.cs" Link="SelectReader.cs" />
+    <Compile Include="..\Peanut\Mappings\TableAttribute.cs" Link="TableAttribute.cs" />
+    <Compile Include="..\Peanut\Mappings\ValueAttribute.cs" Link="ValueAttribute.cs" />
+    <Compile Include="..\Peanut\ModuleCast.cs" Link="ModuleCast.cs" />
+    <Compile Include="..\Peanut\MysqlBuilder.cs" Link="MysqlBuilder.cs" />
+    <Compile Include="..\Peanut\OracleBuilder.cs" Link="OracleBuilder.cs" />
+    <Compile Include="..\Peanut\Result.cs" Link="Result.cs" />
+    <Compile Include="..\Peanut\SelectObject.cs" Link="SelectObject.cs" />
+    <Compile Include="..\Peanut\SmarkData.cs" Link="SmarkData.cs" />
+    <Compile Include="..\Peanut\SmarkDataSection.cs" Link="SmarkDataSection.cs" />
+    <Compile Include="..\Peanut\SmarkException.cs" Link="SmarkException.cs" />
+    <Compile Include="..\Peanut\SqlitBuilder.cs" Link="SqlitBuilder.cs" />
+    <Compile Include="..\Peanut\Utils.cs" Link="Utils.cs" />
+    <Compile Include="..\Peanut\Validates\Class1.cs" Link="Class1.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\Peanut\DataMsg.resx" Link="DataMsg.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+    <PackageReference Include="System.Data.Common" Version="4.3.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
+    <PackageReference Include="System.Runtime" Version="4.3.0" />
+  </ItemGroup>
+
+</Project>

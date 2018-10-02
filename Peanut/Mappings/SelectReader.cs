@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 
-using IKende.com.core;
 namespace Peanut.Mappings
 {
     class SelectDataReader

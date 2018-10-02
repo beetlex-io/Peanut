@@ -4,7 +4,7 @@ using System.Text;
 using System.Reflection;
 
 using System.Collections;
-using IKende.com.core;
+
 namespace Peanut.Mappings
 {
     class ProcDataReader

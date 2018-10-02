@@ -8,46 +8,53 @@ using System.Data.Odbc;
 using System.Text.RegularExpressions;
 using System.Reflection;
 using System.Collections;
-using IKende.com.core;
+
 // 开源协议:Apache License, Version 2.0
 // Copyright © FanJianHan 2008
 // mail:henryfan@msn.com
 namespace Peanut
 {
 
-  
 
-   
 
- 
+
+
+
     /// <summary>
-   
+
     /// MSSQL数据库
     /// </summary>
-    public class MSSQL : IDriver {
+    public class MSSQL : IDriver
+    {
         #region IDriver 成员
 
-        public IDbConnection Connection {
+        public IDbConnection Connection
+        {
             get { return new SqlConnection(); }
         }
 
-        public IDbDataAdapter DataAdapter(IDbCommand cmd) {
+        public IDbDataAdapter DataAdapter(IDbCommand cmd)
+        {
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = (SqlCommand)cmd;
             return da;
         }
 
-        public IDbCommand Command {
-            get {
+        public IDbCommand Command
+        {
+            get
+            {
                 return new SqlCommand();
             }
         }
 
-        public string ReplaceSql(String sql) {
+        public string ReplaceSql(String sql)
+        {
             return sql.Replace("@", "@");
         }
 
-        public IDataParameter CreateParameter(string name, object value, ParameterDirection direction) {
+        public IDataParameter CreateParameter(string name, object value, ParameterDirection direction)
+        {
             SqlParameter sp = new SqlParameter("@" + name, value);
             if (value == null)
                 sp.Value = DBNull.Value;
@@ -67,137 +74,97 @@ namespace Peanut
             return sp;
         }
     }
-    /// <summary>
-   
-    /// ACCESS数据库
-    /// </summary>
-    public class MSAccess : IDriver {
-        #region IDriver 成员
+    ///// <summary>
 
-        public IDbConnection Connection {
-            get { return new OleDbConnection(); }
-        }
+    ///// ACCESS数据库
+    ///// </summary>
+    //public class MSAccess : IDriver
+    //{
+    //    #region IDriver 成员
 
-        public IDbDataAdapter DataAdapter(IDbCommand cmd) {
-            OleDbDataAdapter da = new OleDbDataAdapter();
-            da.SelectCommand = (OleDbCommand)cmd;
-            return da;
-        }
+    //    public IDbConnection Connection
+    //    {
+    //        get { return new OleDbConnection(); }
+    //    }
 
-        public IDbCommand Command {
-            get {
-                return new OleDbCommand();
-            }
-        }
+    //    public IDbDataAdapter DataAdapter(IDbCommand cmd)
+    //    {
+    //        OleDbDataAdapter da = new OleDbDataAdapter();
+    //        da.SelectCommand = (OleDbCommand)cmd;
+    //        return da;
+    //    }
 
-        public string ReplaceSql(String sql) {
-            return sql.Replace("@", "@");
-        }
+    //    public IDbCommand Command
+    //    {
+    //        get
+    //        {
+    //            return new OleDbCommand();
+    //        }
+    //    }
 
-        public IDataParameter CreateParameter(string name, object value, ParameterDirection direction) {
-            OleDbParameter sp = new OleDbParameter("@" + name, value);
-            sp.Direction = direction;
-            if (value == null)
-                sp.Value = DBNull.Value;
-            else if (value.GetType() == typeof(DateTime))
-            {
-                sp.Value = value.ToString();
-            }
-            else
-            {
-                sp.Value = value;
-            }
-            return sp;
-        }
+    //    public string ReplaceSql(String sql)
+    //    {
+    //        return sql.Replace("@", "@");
+    //    }
 
-        #endregion
+    //    public IDataParameter CreateParameter(string name, object value, ParameterDirection direction)
+    //    {
+    //        OleDbParameter sp = new OleDbParameter("@" + name, value);
+    //        sp.Direction = direction;
+    //        if (value == null)
+    //            sp.Value = DBNull.Value;
+    //        else if (value.GetType() == typeof(DateTime))
+    //        {
+    //            sp.Value = value.ToString();
+    //        }
+    //        else
+    //        {
+    //            sp.Value = value;
+    //        }
+    //        return sp;
+    //    }
 
-
-        public IDataParameter CreateProcParameter(string name, object value, ParameterDirection direction)
-        {
-            OleDbParameter sp = new OleDbParameter("@" + name, value);
-            sp.Direction = direction;
-            if (value == null)
-                sp.Value = DBNull.Value;
-            else if (value.GetType() == typeof(DateTime))
-            {
-                sp.Value = value.ToString();
-            }
-            else
-            {
-                sp.Value = value;
-            }
-            return sp;
-        }
-    }
-    /// <summary>
-  
-    /// ODBC数据库
-    /// </summary>
-    public class ODBC : IDriver {
-        #region IDriver 成员
-
-        public IDbConnection Connection {
-            get { return new OdbcConnection(); }
-        }
-
-        public IDbDataAdapter DataAdapter(IDbCommand cmd) {
-            OdbcDataAdapter da = new OdbcDataAdapter();
-            da.SelectCommand = (OdbcCommand)cmd;
-            return da;
-        }
-
-        public IDbCommand Command {
-            get { return new OdbcCommand(); }
-        }
-
-        public string ReplaceSql(string sql) {
-            return Regex.Replace(sql, "@[a-zA-z_0-9]+", "?", RegexOptions.IgnoreCase);
-        }
-
-        public IDataParameter CreateParameter(string name, object value, ParameterDirection direction) {
-            OdbcParameter op = new OdbcParameter();
-            op.ParameterName = "?";
-            op.Value = value;
-            if (value == null)
-                op.Value = DBNull.Value;
-            op.Direction = direction;
-            return op;
-
-        }
-
-        #endregion
+    //    #endregion
 
 
-        public IDataParameter CreateProcParameter(string name, object value, ParameterDirection direction)
-        {
-            OdbcParameter op = new OdbcParameter();
-            op.ParameterName = "?";
-            op.Value = value;
-            if (value == null)
-                op.Value = DBNull.Value;
-            op.Direction = direction;
-            return op;
-        }
-    }
- 
+    //    public IDataParameter CreateProcParameter(string name, object value, ParameterDirection direction)
+    //    {
+    //        OleDbParameter sp = new OleDbParameter("@" + name, value);
+    //        sp.Direction = direction;
+    //        if (value == null)
+    //            sp.Value = DBNull.Value;
+    //        else if (value.GetType() == typeof(DateTime))
+    //        {
+    //            sp.Value = value.ToString();
+    //        }
+    //        else
+    //        {
+    //            sp.Value = value;
+    //        }
+    //        return sp;
+    //    }
+    //}
+
     /// <summary> 
     /// 命令执行描述
     /// </summary>
-    public interface ICommandExecute {
+    public interface ICommandExecute
+    {
         int Execute(IConnectinContext cc);
     }
     /// <summary>
-   
+
     /// 添加数据命令
     /// </summary>
-    public class Insert:ICommandExecute {
+    public class Insert : ICommandExecute
+    {
 
-        
-        public Insert(string table) {
+
+        public Insert(string table)
+        {
 
             mTable = table;
-           
+
         }
         private string mTable;
         private IList<Field> mInserFields = new List<Field>();
@@ -215,46 +182,55 @@ namespace Peanut
             mInserFields.Add(f);
             return this;
         }
-        public int Execute(IConnectinContext cc) {
-            Command mCommand = Command.GetThreadCommand().AddSqlText("Insert into ").AddSqlText( mTable);
+        public int Execute(IConnectinContext cc)
+        {
+            Command mCommand = Command.GetThreadCommand().AddSqlText("Insert into ").AddSqlText(mTable);
             System.Text.StringBuilder names, values;
             names = new System.Text.StringBuilder();
             values = new System.Text.StringBuilder();
             Field field;
-            for (int i = 0; i < mInserFields.Count; i++) {
-                if (i > 0) {
+            for (int i = 0; i < mInserFields.Count; i++)
+            {
+                if (i > 0)
+                {
                     names.Append(",");
                     values.Append(",");
                 }
                 field = (Field)mInserFields[i];
 
                 names.Append(field.Name);
-                if (field.IsParameter) {
+                if (field.IsParameter)
+                {
                     values.Append("@").Append(field.ParameterName);
                     if (field.Value != null)
                         mCommand.AddParameter(field.ParameterName, field.Value);
                     else
                         mCommand.AddParameter(field.ParameterName, DBNull.Value);
-                } else
+                }
+                else
                     values.Append(field.Value);
 
             }
             mCommand.Text.Append("(").Append(names).Append(")").Append(" Values(").Append(values).Append(")");
             return cc.ExecuteNonQuery(mCommand);
-           
+
 
         }
     }
     /// <summary>
-      /// 字段值描述
+    /// 字段值描述
     /// </summary>
-    public class Field {
+    public class Field
+    {
         private object mValue;
-        public object Value {
-            get {
+        public object Value
+        {
+            get
+            {
                 return mValue;
             }
-            set {
+            set
+            {
                 mValue = value;
             }
         }
@@ -271,32 +247,40 @@ namespace Peanut
             }
         }
         private string mName;
-        public string Name {
-            get {
+        public string Name
+        {
+            get
+            {
                 return mName;
             }
-            set {
+            set
+            {
                 mName = value;
             }
         }
         private bool mIsParameter = true;
-        public bool IsParameter {
-            get {
+        public bool IsParameter
+        {
+            get
+            {
                 return mIsParameter;
             }
-            set {
+            set
+            {
                 mIsParameter = value;
             }
         }
-        public string GetValueBy {
+        public string GetValueBy
+        {
             get;
             set;
         }
-        public bool GetValueAfterInsert {
+        public bool GetValueAfterInsert
+        {
             get;
             set;
         }
-        
+
     }
     /// <summary>
     /// SQL执行映射对象
@@ -317,7 +301,7 @@ namespace Peanut
             sql.AddSql(subsql);
             return sql;
         }
-        public static SQL operator +(SQL sql,string subsql)
+        public static SQL operator +(SQL sql, string subsql)
         {
             sql.AddSql(subsql);
             return sql;
@@ -367,7 +351,7 @@ namespace Peanut
         /// 执行SQL并返回受影响的数量
         /// </summary>
         /// <returns>int</returns>
-        public  int Execute()
+        public int Execute()
         {
             using (IConnectinContext cc = DBContext.DB1)
             {
@@ -391,7 +375,7 @@ namespace Peanut
         /// </summary>
         /// <param name="cc">数据库访问上下文</param>
         /// <returns>int</returns>
-        public  int Execute(IConnectinContext cc)
+        public int Execute(IConnectinContext cc)
         {
             return cc.ExecuteNonQuery(mCommand);
         }
@@ -465,7 +449,7 @@ namespace Peanut
         /// <returns>返回对象</returns>
         public T ListFirst<T>(IConnectinContext cc) where T : new()
         {
-            IList<T> result = List<T>(cc, new Region(0,2));
+            IList<T> result = List<T>(cc, new Region(0, 2));
             if (result.Count > 0)
                 return result[0];
             return default(T);
@@ -501,7 +485,7 @@ namespace Peanut
         {
             using (IConnectinContext cc = DBContext.DB1)
             {
-                return List<T>(cc,region);
+                return List<T>(cc, region);
             }
         }
         /// <summary>
@@ -530,7 +514,7 @@ namespace Peanut
 
         internal IList List(Type type, IConnectinContext cc, Region region)
         {
-            TimeWatch.________________________________________________________("Peanut->SQL to list");
+           
             System.Type itemstype = System.Type.GetType("System.Collections.Generic.List`1");
             itemstype = itemstype.MakeGenericType(type);
             IList result;
@@ -539,16 +523,16 @@ namespace Peanut
                 region = new Region(0, 99999999);
             }
             if (region.Size > DBContext.DefaultListMaxSize)
-                result =(IList) Activator.CreateInstance(itemstype,DBContext.DefaultListMaxSize);
+                result = (IList)Activator.CreateInstance(itemstype, DBContext.DefaultListMaxSize);
             else
-                result = (IList) Activator.CreateInstance(itemstype,region.Size);
+                result = (IList)Activator.CreateInstance(itemstype, region.Size);
             Mappings.CommandReader cr = Mappings.CommandReader.GetReader(mBaseSql, type);
             int index = 0;
             Command cmd = GetCommand();
-            TimeWatch.________________________________________________________("Peanut->DataReader to list");
+
             using (IDataReader reader = cc.ExecuteReader(cmd))
             {
-                TimeWatch.________________________________________________________("Peanut->Read Data");
+
                 while (reader.Read())
                 {
                     if (index >= region.Start)
@@ -565,10 +549,9 @@ namespace Peanut
                     }
                     index++;
                 }
-                TimeWatch.________________________________________________________();
+
             }
-            TimeWatch.________________________________________________________();
-            TimeWatch.________________________________________________________();
+
             return result;
 
         }
@@ -597,29 +580,32 @@ namespace Peanut
         public IList<T> List<T>(IConnectinContext cc, Region region) where T : new()
         {
             return (IList<T>)List(typeof(T), cc, region);
-          
+
         }
 
         private Command GetCommand()
         {
-            
+
             return mCommand;
         }
     }
-   
+
     /// <summary>
-     /// 更新数据命令
+    /// 更新数据命令
     /// </summary>
-    public class Update:ICommandExecute {
-  
-        public Update(string table) {
-           
+    public class Update : ICommandExecute
+    {
+
+        public Update(string table)
+        {
+
             mTable = table;
         }
         private string mTable;
         private IList<Field> mFields = new List<Field>();
-        public Update AddField(string name,string parametername, object value) {
-            AddField(name,parametername, value, true);
+        public Update AddField(string name, string parametername, object value)
+        {
+            AddField(name, parametername, value, true);
             return this;
         }
         public Update AddField(string name, string parametername, object value, bool isparameter)
@@ -635,10 +621,12 @@ namespace Peanut
         private Expression mWhere = new Expression();
         public Expression Where
         {
-            get {
+            get
+            {
                 return mWhere;
             }
-            set {
+            set
+            {
                 mWhere = value;
             }
         }
@@ -647,25 +635,29 @@ namespace Peanut
         {
             using (IConnectinContext cc = DBContext.DB1)
             {
-               return Execute(cc);
+                return Execute(cc);
             }
         }
         public int Execute(IConnectinContext cc)
         {
             Command mCommand = Command.GetThreadCommand().AddSqlText("Update ").AddSqlText(mTable).AddSqlText(" set ");
-            for (int i = 0; i < mFields.Count; i++) {
+            for (int i = 0; i < mFields.Count; i++)
+            {
                 if (i > 0)
                     mCommand.Text.Append(",");
-                if (!mFields[i].IsParameter) {
+                if (!mFields[i].IsParameter)
+                {
                     mCommand.Text.Append(mFields[i].Name).Append("=").Append(mFields[i].Value);
-                } else {
+                }
+                else
+                {
                     mCommand.Text.Append(mFields[i].Name).Append("=@").Append(mFields[i].ParameterName);
                     mCommand.AddParameter(mFields[i].ParameterName, mFields[i].Value);
                 }
             }
             Where.Parse(mCommand);
             return cc.ExecuteNonQuery(mCommand);
-            
+
         }
 
         #endregion
@@ -674,12 +666,14 @@ namespace Peanut
     /// <summary>
     /// 删除数据命令
     /// </summary>
-    public class Delete:ICommandExecute {
-       
-        public Delete(string table) {
+    public class Delete : ICommandExecute
+    {
+
+        public Delete(string table)
+        {
 
             mTable = table;
-           
+
         }
         private string mTable;
         private Expression mWhere = new Expression();
@@ -699,14 +693,15 @@ namespace Peanut
         {
             using (IConnectinContext cc = DBContext.DB1)
             {
-               return Execute(cc);
+                return Execute(cc);
             }
         }
-        public int Execute(IConnectinContext cc) {
-            Command mCommand= Command.GetThreadCommand().AddSqlText("Delete from ").AddSqlText(mTable);
+        public int Execute(IConnectinContext cc)
+        {
+            Command mCommand = Command.GetThreadCommand().AddSqlText("Delete from ").AddSqlText(mTable);
             Where.Parse(mCommand);
             return cc.ExecuteNonQuery(mCommand);
-          
+
         }
 
         #endregion
@@ -721,7 +716,7 @@ namespace Peanut
         public Region()
         {
         }
-        public Region(int pageindex,int size)
+        public Region(int pageindex, int size)
         {
             Size = size;
             Start = pageindex * size;
@@ -739,7 +734,7 @@ namespace Peanut
     }
 
 
-   
+
 
 
 }

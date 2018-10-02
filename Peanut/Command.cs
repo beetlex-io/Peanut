@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data;
-using IKende.com.core;
 namespace Peanut
 {
     /// <summary>
@@ -193,7 +192,7 @@ namespace Peanut
         /// <returns>IDbCommand</returns>
         public IDbCommand CreateCommand(IDriver driver)
         {
-            TimeWatch.________________________________________________________("Peanut->Create IDbCommand");
+          
             IDbCommand cmd = driver.Command;
             cmd.CommandText = driver.ReplaceSql(Text.ToString());
             cmd.CommandType = CommandType;
@@ -204,7 +203,7 @@ namespace Peanut
                 cmd.Parameters.Add(driver.CreateParameter(p.Name, p.Value, p.Direction));
 
             }
-            TimeWatch.________________________________________________________();
+          
             return cmd;
         }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Peanut.Mappings;
 using System.Collections;
-using IKende.com.core;
+
 namespace Peanut
 {
     /// <summary>
@@ -680,7 +680,7 @@ namespace Peanut
         }
         public IList<T> List<T>(JoinTable table, IConnectinContext cc,Region region,params string[] orders) where T : new()
         {
-            TimeWatch.________________________________________________________("Peanut->Express JoinTable to list");
+         
             SQL sql = new SQL(table.ToString());
             if (this.SqlText.Length > 0)
             {
@@ -695,7 +695,7 @@ namespace Peanut
                 sql.AddSql(" order by " + string.Join(",", orders));
             }
             IList<T> result= sql.List<T>(cc, region);
-            TimeWatch.________________________________________________________();
+          
             return result;
         }
 
