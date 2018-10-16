@@ -23,6 +23,14 @@ namespace Sqlite.Sample
                 Console.WriteLine(item.CompanyName);
             }
 
+
+            foreach (var item in exp.List<GroupByCountry>())
+            {
+                Console.WriteLine("{0}:{1}", item.Country, item.Count);
+            }
+            
+
+
             Console.Read();
         }
     }

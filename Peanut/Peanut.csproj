@@ -108,8 +108,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DataMsg.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DataMsg1.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

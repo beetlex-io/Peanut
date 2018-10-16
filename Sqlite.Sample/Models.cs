@@ -33,4 +33,14 @@ namespace Sqlite.Sample
         [Column]
         string Country { get; set; }
     }
+  
+
+    public interface IGroupByCountry
+    {
+        [Column("ID")]
+        [Count]
+        int Count { get; set; }
+        [Column]
+        string Country { get; set; }
+    }
 }

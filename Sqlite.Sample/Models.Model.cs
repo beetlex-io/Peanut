@@ -183,5 +183,56 @@ namespace Sqlite.Sample
         }
         
     }
+    ///<summary>
+    ///Peanut Generator Copyright @ henryfan 2018 email:henryfan@msn.com
+    ///website:http://www.ikende.com
+    ///</summary>
+    public partial class GroupByCountry : Peanut.Mappings.DataObject
+    {
+        private int mCount;
+        public static Peanut.FieldInfo<int> count = new Peanut.FieldInfo<int>("GroupByCountry", "ID");
+        private string mCountry;
+        public static Peanut.FieldInfo<string> country = new Peanut.FieldInfo<string>("GroupByCountry", "Country");
+        ///<summary>
+        ///Type:int
+        ///</summary>
+        [Column("ID")]
+        [Count]
+        public virtual int Count
+        {
+            get
+            {
+                return mCount;
+                
+            }
+            set
+            {
+                mCount = value;
+                EntityState.FieldChange("Count");
+                
+            }
+            
+        }
+        ///<summary>
+        ///Type:string
+        ///</summary>
+        [Column()]
+        public virtual string Country
+        {
+            get
+            {
+                return mCountry;
+                
+            }
+            set
+            {
+                mCountry = value;
+                EntityState.FieldChange("Country");
+                
+            }
+            
+        }
+        
+    }
     
 }

@@ -11,6 +11,7 @@ namespace Peanut
     [Serializable]
     public abstract class EntityBase : IEntityState
     {
+        public EntityBase() { }
         private bool mLoadComplete = true;
 
         #region IEntityState 成员
@@ -25,7 +26,7 @@ namespace Peanut
             get;
             set;
         }
-
+        [NonSerialized]
         Dictionary<string, FieldState> m_FieldState = new Dictionary<string, FieldState>();
 
         Dictionary<string, FieldState> IEntityState._FieldState
@@ -42,7 +43,7 @@ namespace Peanut
                     m_FieldState.Add(field, new FieldState { ModifyTime = DateTime.Now });
                 }
         }
-
+      
         public IEntityState EntityState
         {
             get
@@ -71,7 +72,7 @@ namespace Peanut
             return System.Convert.ChangeType(data, type);
         }
 
-        private static IList OnList(Type type, IConnectinContext cc, string from, Expression expression, Region region, string orderby, string groupby) 
+        private static IList OnList(Type type, IConnectinContext cc, string from, Expression expression, Region region, string orderby, string groupby)
         {
             Command cmd = Command.GetThreadCommand().AddSqlText(from);// new Command(from);
             if (expression != null)
@@ -85,12 +86,12 @@ namespace Peanut
             return cc.List(type, cmd, region);
         }
 
-        internal static IList ExOnList(Type type,IConnectinContext cc, string from, Expression expression, Region region, string orderby, string groupby) 
+        internal static IList ExOnList(Type type, IConnectinContext cc, string from, Expression expression, Region region, string orderby, string groupby)
         {
             return OnList(type, cc, from, expression, region, orderby, groupby);
         }
 
-        private static object OnListFirst(Type type,IConnectinContext cc, string from, Expression expression, string orderby, string groupby) 
+        private static object OnListFirst(Type type, IConnectinContext cc, string from, Expression expression, string orderby, string groupby)
         {
             Command cmd = Command.GetThreadCommand().AddSqlText(from);// new Command(from);
             if (expression != null)
@@ -101,7 +102,7 @@ namespace Peanut
 
             if (!string.IsNullOrEmpty(orderby))
                 cmd.Text.Append(" Order by ").Append(orderby);
-            return cc.ListFirst(type,cmd);
+            return cc.ListFirst(type, cmd);
         }
 
         internal static object ExOnListFirst(Type type, IConnectinContext cc, string from, Expression expression, string orderby, string groupby)
@@ -128,7 +129,7 @@ namespace Peanut
             return OnCount(cc, table, expression, groupby);
         }
 
-        private static int  OnDelete(IConnectinContext cc, string table, Expression expression)
+        private static int OnDelete(IConnectinContext cc, string table, Expression expression)
         {
             Delete del = new Delete(table);
             del.Where = expression;
@@ -159,11 +160,11 @@ namespace Peanut
                 return 0;
             if (EntityState._Loaded)
             {
-               return OnEdit(cc, table, fields, id);
+                return OnEdit(cc, table, fields, id);
             }
             else
             {
-               return OnAdd(cc, table, fields, id);
+                return OnAdd(cc, table, fields, id);
             }
         }
 
@@ -183,13 +184,13 @@ namespace Peanut
             {
                 insert.AddField(id.Name, id.Value);
             }
-            for(int i =0;i<fields.Count;i++)
+            for (int i = 0; i < fields.Count; i++)
             {
-                Field f= fields[i];
+                Field f = fields[i];
                 if (EntityState._FieldState.ContainsKey(f.Name))
                     insert.AddField(f.Name, f.Value);
             }
-            result=insert.Execute(cc);
+            result = insert.Execute(cc);
             if (!string.IsNullOrEmpty(id.GetValueBy) && id.GetValueAfterInsert)
             {
                 cmd = Command.GetThreadCommand().AddSqlText(id.GetValueBy);// new Command(id.GetValueBy);
@@ -245,6 +246,6 @@ namespace Peanut
 
 
 
-       
+
     }
 }
